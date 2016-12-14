@@ -1,0 +1,17 @@
+I was having trouble accessing postgres from the notebook in DSX, here is the solution. 
+
+Just add the driver to a folder called ~/data/libs
+ 
+!wget https://jdbc.postgresql.org/download/postgresql-9.4.1207.jre7.jar -nc
+ 
+!cp postgresql-9.4.1207.jre7.jar ~/data/libs
+ 
+and then restart the kernel ( there's a drop down menu called Kernel, just choose "restart") and then you will be able to use postrgres jdbc tools
+ 
+df = sqlContext.read.format('jdbc').options(url='jdbc:postgresql://bluemix-sandbox-dal-9-portal.2.dblayer.com:15656/compose', \
+                                            dbtable='game', \
+                                            user='admin', \
+                                            password='RFSUPYGYXCMNKGUN'
+                                           ).load()
+ 
+Let me know if you have any issues. Thanks. 
